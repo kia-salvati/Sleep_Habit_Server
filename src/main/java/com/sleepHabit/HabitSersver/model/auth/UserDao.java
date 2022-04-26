@@ -3,6 +3,7 @@ package com.sleepHabit.HabitSersver.model.auth;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Streamable;
@@ -26,7 +27,15 @@ public class UserDao {
         return users;
       }
 
-    public void delete(int userid){
+      
+    public void deleteById(int userid){
         repository.deleteById(userid);
+        
     }
+
+    public Optional<User> findById(int userid){
+        return repository.findById(userid);
+    }
+
+   
 }

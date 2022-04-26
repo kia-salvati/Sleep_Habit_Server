@@ -16,9 +16,9 @@ class HabitSersverApplicationTests {
 	@Test
 	void addUserTest() {
 		User user = new User();
-		user.setusername("ghareb2");
-		user.setemail("Shit2@gmail.com");
-		user.setpassword("1515485");
+		user.setUserName("ghareb2");
+		user.setEmail("Shit2@gmail.com");
+		user.setPassword("1515485");
 		userDao.save(user);
 
 	}
