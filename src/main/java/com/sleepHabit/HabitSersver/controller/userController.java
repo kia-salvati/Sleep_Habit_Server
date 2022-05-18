@@ -38,15 +38,15 @@ public class userController {
        userDao.deleteById(userid);
    }
 
-   @PutMapping("/user/{userid}/")
-   public User update(@Validated @RequestBody User userRequest){
-        User user;
-        return userDao.findById(userid).map(post->{  
-            user.setUserName(userRequest.getUserName());
-            user.setEmail(userRequest.getEmail());
-            user.setPassword(userRequest.getPassword());
-            return userDao.save(user);
-        }).orElseThrow(()->new ResourceNotFoundException("userid" + userid + " not found"));
-   }
+//    @PutMapping("/user/{userid}/")
+//    public User update(@Validated @RequestBody User userRequest){
+//         User user;
+//         return userDao.findById(userid).map(post->{  
+//             user.setUserName(userRequest.getUserName());
+//             user.setEmail(userRequest.getEmail());
+//             user.setPassword(userRequest.getPassword());
+//             return userDao.save(user);
+//         }).orElseThrow(()->new ResourceNotFoundException("userid" + userid + " not found"));
+//    }
 
 }
