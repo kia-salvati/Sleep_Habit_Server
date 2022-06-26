@@ -36,6 +36,5 @@ public class UserDao {
     public Optional<User> findById(int userid){
         return repository.findById(userid);
     }
-
    
 }

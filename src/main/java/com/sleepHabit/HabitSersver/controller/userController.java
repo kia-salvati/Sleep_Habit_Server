@@ -2,9 +2,9 @@ package com.sleepHabit.HabitSersver.controller;
 
 
 import java.util.List;
+
 import com.sleepHabit.HabitSersver.model.auth.User;
 import com.sleepHabit.HabitSersver.model.auth.UserDao;
-import com.sleepHabit.HabitSersver.model.auth.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -21,16 +21,29 @@ public class userController {
     @Autowired
     private UserDao userDao;
 
-    private UserRepository userRepository;
-
     @GetMapping("/user/get-all")
     public List<User>getAllusers() {
         return userDao.getAllusers();
     }
 
-    @PostMapping("/user/save")
-    public User save(@Validated @RequestBody User user) {
-        return userDao.save(user);
+    @PostMapping("/user/register")
+    public User register (@Validated @RequestBody User newUser) {
+        List<User> users = userDao.getAllusers();
+        for(User user:users){
+            if(newUser.equals(user)){
+                System.out.println("User Already exists!");
+             }
+        }
+        return userDao.save(newUser);
+    }
+
+    @GetMapping("/user/login")
+    public boolean check(@Validated @RequestBody User checkUser) {
+        List<User> users = userDao.getAllusers();
+        for(User user:users){
+            if(checkUser.equals(user))
+            return true;
+        }return false;
     }
 
    @DeleteMapping("/user/delete{userid}")
@@ -39,7 +52,7 @@ public class userController {
    }
 
 //    @PutMapping("/user/{userid}/")
-//    public User update(@Validated @RequestBody User userRequest){
+//    public User update(@Validated @RequestBody User userRequest, @RequestBody int userid){
 //         User user;
 //         return userDao.findById(userid).map(post->{  
 //             user.setUserName(userRequest.getUserName());

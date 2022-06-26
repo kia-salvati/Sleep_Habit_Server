@@ -19,7 +19,7 @@ public class tipsDescriptionController {
     private TipsDescriptionDao TDDao;
 
     @GetMapping("/td/get-all")
-    public List<TipsDescription> getAllTags(){
+    public List<TipsDescription> getAllTips(){
         return TDDao.getAllTD();
     }
   

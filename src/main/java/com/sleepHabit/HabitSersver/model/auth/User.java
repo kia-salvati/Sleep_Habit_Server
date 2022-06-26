@@ -13,10 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.sleepHabit.HabitSersver.model.tag.Tag;
 
 @Entity
+@Table(name = "users")
 public class User{
 
     @Id
@@ -28,7 +30,7 @@ public class User{
     private String email;
 
     @ManyToMany(fetch =FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "user_tag", joinColumns ={ @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id") })
+    @JoinTable(name = "tags", joinColumns ={ @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagid") })
     private Set<Tag> tags = new HashSet<>();
 
 

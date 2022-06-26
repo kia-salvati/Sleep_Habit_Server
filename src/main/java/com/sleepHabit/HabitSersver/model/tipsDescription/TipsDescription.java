@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.sleepHabit.HabitSersver.model.tips.Tips;
+import com.sleepHabit.HabitSersver.model.tag.Tag;
 
 
 @Entity
@@ -24,8 +24,8 @@ public class TipsDescription {
     private String description;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "Tips_tipid", nullable = false)
-    private Tips tipid;
+    @JoinColumn(name = "TagsID_TipID", nullable = false)
+    private Tag tagID;
 
     public int getTDid(){
         return tdid;
@@ -41,11 +41,11 @@ public class TipsDescription {
         this.description = describe;
     }
 
-    public Tips getTipid(){
-        return tipid;
+    public Tag getTagid(){
+        return tagID;
     }
-    public void setTipid(Tips tipid){
-        this.tipid = tipid;
+    public void setTagid(Tag tagid){
+        this.tagID = tagid;
     }
 
 
