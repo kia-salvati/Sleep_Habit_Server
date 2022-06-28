@@ -30,7 +30,7 @@ public class User{
     private String email;
 
     @ManyToMany(fetch =FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "tags", joinColumns ={ @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagid") })
+    @JoinTable(name = "tag", joinColumns ={ @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagid") })
     private Set<Tag> tags = new HashSet<>();
 
 
