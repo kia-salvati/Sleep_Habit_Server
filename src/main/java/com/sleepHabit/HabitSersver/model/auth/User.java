@@ -14,11 +14,19 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+import javax.persistence.*;
+
+import com.sleepHabit.HabitSersver.model.Role.Role;
 import com.sleepHabit.HabitSersver.model.tag.Tag;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", uniqueConstraints = { 
+    @UniqueConstraint(columnNames = { "username"}),
+    @UniqueConstraint(columnNames = { "email"}) 
+})
 public class User{
 
     @Id
@@ -29,9 +37,21 @@ public class User{
     private String password;
     private String email;
 
+    // relationship between user and tag
     @ManyToMany(fetch =FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "tag", joinColumns ={ @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagid") })
+    @JoinTable(name = "user_tag", joinColumns ={ @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "tag_id", referencedColumnName = "tagid") })
     private Set<Tag> tags = new HashSet<>();
+
+
+    
+    // relationship between  user and role
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Set<Role> roles;
+
+
 
 
     public int getId() {
@@ -62,10 +82,10 @@ public class User{
         this.email = email;
     }
 
+    
     @Override
     public String toString() {
         return "Users{" + "id=" + id + '\'' + ", username='" + username + '\'' +" password='" + password + '\'' + " email='" + email + '\'' + '}'; 
     }
-
-
+   
 }
