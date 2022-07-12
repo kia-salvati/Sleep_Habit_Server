@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.sleepHabit.HabitSersver.model.auth.CustomUserDetailsService;
+// import com.sleepHabit.HabitSersver.model.auth.CustomUserDetailsService;
 
 
 
@@ -24,7 +24,7 @@ import com.sleepHabit.HabitSersver.model.auth.CustomUserDetailsService;
 public class SecurityConfig extends  WebSecurityConfigurerAdapter  {
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;    
+    // private CustomUserDetailsService userDetailsService;    
 
     @Bean
     PasswordEncoder passwordEncoder(){
@@ -44,16 +44,16 @@ public class SecurityConfig extends  WebSecurityConfigurerAdapter  {
                 .httpBasic();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+    // @Override
+    // protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    //     auth.userDetailsService(userDetailsService)
+    //             .passwordEncoder(passwordEncoder());
+    // }
     
-    @Override
-    @Bean
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
+    // @Override
+    // @Bean
+    // public AuthenticationManager authenticationManagerBean() throws Exception {
+    //     return super.authenticationManagerBean();
+    // }
     
 }

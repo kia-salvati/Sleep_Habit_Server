@@ -62,8 +62,8 @@ public class userController {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
             checkUser.getEmail(), checkUser.getPassword()));
 
-    SecurityContextHolder.getContext().setAuthentication(authentication);
-    return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        return new ResponseEntity<>("User signed-in successfully!.", HttpStatus.OK);
     }
 
    @DeleteMapping("/user/delete{userid}")
