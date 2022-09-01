@@ -19,6 +19,7 @@ dependencies {
 	implementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.28'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 
 
 	// Project Lombok
